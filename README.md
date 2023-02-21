@@ -1,5 +1,10 @@
 # yquake2-plus (yquake2+)  
 ![yquake2-plus.png](https://raw.githubusercontent.com/RapidEdwin08/yquake2-plus/main/yquake2-plus.png)  
+[yquake2+] Emulator Entry allows you to add Extra Parameters (+map) to [Quake2.sh] Roms.  
+Includes additional [yquake2+deathmatch] and [yquake2+dedicatedserver] Emulator Entries.  
+NOTE: You Must Specify [+map] and Setup a [server.cfg] File for Dedicated Server Mode to load properly.  
+Also Includes Utility to Assist with Make/Install Quake II Capture the Flag [game.so].  
+
 
 **HOW DOES IT WORK?**  
 RetroPie passes the "%ROM%" String from [Quake2.sh] to [yquake2] Emulator with "Double-Quotes".  
