@@ -50,7 +50,7 @@ cd ~/yquake2-plus && ./yquake2_plus.sh
 2) PUT Quake II Capture the Flag [q2ctf150] FILES HERE:  
 ~/RetroPie/roms/ports/quake2/q2ctf150/  
 
-3) MAKE/INSTALL CTF [game.so] FOR LINUX:  
+3) MAKE/INSTALL CTF [game.so] FOR LINUX: ***(Or use Utility Script)***  
 ```bash
 cd ~
 git clone --depth 1 https://github.com/yquake2/ctf.git
