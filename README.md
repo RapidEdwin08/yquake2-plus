@@ -45,7 +45,7 @@ cd ~/yquake2-plus && ./yquake2_plus.sh
 ***[Quake II Capture the Flag]:***  
 
 1) DOWNLOAD Quake II Capture the Flag [q2ctf150] FILES HERE:  
-[www.doomworld.com/idgames/idstuff/quake2/ctf/q2ctf150](www.doomworld.com/idgames/idstuff/quake2/ctf/q2ctf150)  
+[www.doomworld.com/idgames/idstuff/quake2/ctf/q2ctf150](https://www.doomworld.com/idgames/idstuff/quake2/ctf/q2ctf150)  
 
 2) PUT Quake II Capture the Flag [q2ctf150] FILES HERE:  
 ~/RetroPie/roms/ports/quake2/q2ctf150/  
@@ -71,4 +71,4 @@ _PORT_ "quake2" "q2ctf150 +set deathmatch 1 +map q2ctf1"
 
 ***SOURCES:***  
 [https://github.com/yquake2/ctf](https://github.com/yquake2/ctf)  
-[www.doomworld.com/idgames/idstuff/quake2/ctf/q2ctf150](www.doomworld.com/idgames/idstuff/quake2/ctf/q2ctf150)  
+[www.doomworld.com/idgames/idstuff/quake2/ctf/q2ctf150](https://www.doomworld.com/idgames/idstuff/quake2/ctf/q2ctf150)  
