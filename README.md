@@ -42,7 +42,7 @@ cd ~/yquake2-plus && ./yquake2_plus.sh
 
 ## REFERENCES   
 
-[Quake II Capture the Flag]:  
+***[Quake II Capture the Flag]:***  
 
 1) DOWNLOAD Quake II Capture the Flag [q2ctf150] FILES HERE:  
 [www.doomworld.com/idgames/idstuff/quake2/ctf/q2ctf150](www.doomworld.com/idgames/idstuff/quake2/ctf/q2ctf150)  
@@ -59,12 +59,12 @@ make
 mv ~/ctf/release/game.so ~/RetroPie/roms/ports/quake2/q2ctf150/
 ```
 
-EXAMPLE [yquake2-plus.sh] ROM SCRIPTs:  
+***EXAMPLE [yquake2-plus.sh] ROM SCRIPTs:***  
 _PORT_ "quake2" "q2dme1m1 +map q2dme1m1"  
 _PORT_ "quake2" "baseq2 +set deathmatch 1 +map q2dm1"  
 _PORT_ "quake2" "q2ctf150 +set deathmatch 1 +map q2ctf1"  
 
-# Additional Emulator Entries for RetroPie Yamagi Quake II #  
+***Additional Emulator Entries for RetroPie Yamagi Quake II***  
 [yquake2+]: %ROM% with "Double-Quotes" Removed  
 [yquake2+deathmatch]: %ROM% +set deathmatch 1  
 [yquake2+dedicatedserver]: %ROM% +set dedicated 1 +exec server.cfg  
