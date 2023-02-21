@@ -59,7 +59,7 @@ mainMENU()
 
 # WARN IF [..ports/doom/emlators.cfg] N0T Found 
 if [ ! -f /opt/retropie/configs/ports/quake2/emulators.cfg ]; then
-	dialog --no-collapse --title "***N0TICE*** [..ports/quake2/emlators.cfg] NOT FOUND!" --ok-label MENU --msgbox "INSTALL Quake2 Emulator 1st..."  25 75
+	dialog --no-collapse --title "***N0TICE*** [..ports/quake2/emlators.cfg] NOT FOUND!" --ok-label MENU --msgbox "You MUST INSTALL Yamagi Quake II from RetroPie Setup 1st! [yquake2]"  25 75
 fi
 # Confirm Configurations
 confQ2plus=$(dialog --stdout --no-collapse --title " [yquake2-plus] + [Quake II Capture the Flag] by: RapidEdwin08 [v$version]" \
@@ -89,7 +89,7 @@ if [ "$confQ2plus" == '1' ]; then
 			
 			# CHECK for REQUIRED [yquake2-plus.sh] - MAIN MENU IF NOT FOUND
 			if [ ! -f /opt/retropie/configs/ports/quake2/yquake2-plus.sh ]; then
-				dialog --no-collapse --title "***N0TICE*** [..ports/quake2/emlators.cfg] NOT FOUND!" --ok-label MENU --msgbox "INSTALL Quake2 Emulator 1st..."  25 75
+				dialog --no-collapse --title "***N0TICE*** [..ports/quake2/emlators.cfg] NOT FOUND!" --ok-label MENU --msgbox "You MUST INSTALL Yamagi Quake II from RetroPie Setup 1st! [yquake2]"  25 75
 				mainMENU
 			fi
 			
