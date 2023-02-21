@@ -18,7 +18,7 @@
 # Sample [Quake2-M0D-Template.sh] Strings:
 #		"/opt/retropie/supplementary/runcommand/runcommand.sh" 0 _PORT_ "quake2" "q2dme1m1 +map q2dme1m1"
 #		"/opt/retropie/supplementary/runcommand/runcommand.sh" 0 _PORT_ "quake2" "baseq2 +set deathmatch 1 +map q2dm1"
-#		"/opt/retropie/supplementary/runcommand/runcommand.sh" 0 _PORT_ "quake2" "q2ctf150 +set deathmatch 1 +set q2ctf150 1 +map q2ctf1"
+#		"/opt/retropie/supplementary/runcommand/runcommand.sh" 0 _PORT_ "quake2" "q2ctf150 +set deathmatch 1 +map q2ctf1"
 
 qiiLOGO=$(
 echo "
