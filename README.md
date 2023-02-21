@@ -4,7 +4,7 @@
 **HOW DOES IT WORK?**  
 RetroPie passes the "%ROM%" String from [Quake2.sh] to [yquake2] Emulator with "Double-Quotes".  
 Using "Double-Quotes" does NOT Pass the Extra Parameters (eg. +map) when using Default [yquake2] Emulator String.  
-This Script Regurgitates the %ROM% from [Quake2.sh] withOUT "Double-Quotes" to an Additional Quake2 Emulator [yquake2+].  
+This Utility Regurgitates the %ROM% from [Quake2.sh] withOUT "Double-Quotes" to an Additional Quake2 Emulator [yquake2+].  
 This allows you to add Extra (+map) Parameters in the [Quake2.sh] withOUT needing to Create additional Emulators for each One.  
 
 ## INSTALLATION  
