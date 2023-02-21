@@ -48,6 +48,8 @@ echo "
 # For Dedicated Server this script calls itself with no parameters - Displays Dedicated Server Dialog - Kills yquake2 when [QUIT] is pressed
 if [ "$1" == "" ]; then
 	dialog --no-collapse --ok-label QUIT --title "Quake2 is Running as a Dedicated Server:" --msgbox "$qiiLOGO Press [QUIT] to KILL SERVER and EXIT... "  25 75 </dev/tty > /dev/tty
+	# Run RetroPie [runcommand-onend.sh] after Quit
+	bash /opt/retropie/configs/all/runcommand-onend.sh > /dev/null 2>&1
 	# kill instances of runcommand scripts
 	PIDrunncommandSH=$(ps -eaf | grep "quake2" | awk '{print $2}')
 	kill $PIDrunncommandSH > /dev/null 2>&1
