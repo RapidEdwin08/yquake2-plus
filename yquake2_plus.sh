@@ -57,7 +57,7 @@ CURRENT CONTENT [/opt/retropie/configs/ports/quake2/emulators.cfg]:
 mainMENU()
 {
 
-# WARN IF [..ports/doom/emlators.cfg] N0T Found 
+# WARN IF [..ports/quake2/emlators.cfg] N0T Found 
 if [ ! -f /opt/retropie/configs/ports/quake2/emulators.cfg ]; then
 	dialog --no-collapse --title "***N0TICE*** [..ports/quake2/emlators.cfg] NOT FOUND!" --ok-label MENU --msgbox "You MUST INSTALL Yamagi Quake II from RetroPie Setup 1st! [yquake2]"  25 75
 fi
@@ -80,17 +80,24 @@ if [ "$confQ2plus" == '1' ]; then
 	# Install Confirmed - Otherwise Back to Main Menu
 	if [ "$confINSTALLq2plus" == '1' ]; then
 		tput reset
+		# WARN IF [..ports/quake2/emlators.cfg] N0T Found
+		if [ ! -f /opt/retropie/configs/ports/quake2/emulators.cfg ]; then
+			dialog --no-collapse --title "***N0TICE*** [..ports/quake2/emlators.cfg] NOT FOUND!" --ok-label MENU --msgbox "You MUST INSTALL Yamagi Quake II from RetroPie Setup 1st! [yquake2]"  25 75
+			mainMENU
+		fi
+		
 		# yquake2 Config
 		if [ -f /opt/retropie/configs/ports/quake2/emulators.cfg ]; then
 			# Get [yyquake2-plus.sh] - REQUIRES INTERNET
 			wget https://raw.githubusercontent.com/RapidEdwin08/yquake2-plus/main/yquake2-plus.sh -P /dev/shm
-			mv /dev/shm/yquake2-plus.sh /opt/retropie/configs/ports/quake2/yquake2-plus.sh 2>/dev/null
-			sudo chmod 755 /opt/retropie/configs/ports/quake2/yquake2-plus.sh 2>/dev/null
 			
 			# CHECK for REQUIRED [yquake2-plus.sh] - MAIN MENU IF NOT FOUND
-			if [ ! -f /opt/retropie/configs/ports/quake2/yquake2-plus.sh ]; then
-				dialog --no-collapse --title "***N0TICE*** [..ports/quake2/emlators.cfg] NOT FOUND!" --ok-label MENU --msgbox "You MUST INSTALL Yamagi Quake II from RetroPie Setup 1st! [yquake2]"  25 75
+			if [ ! -f /dev/shm/yquake2-plus.sh ]; then
+				dialog --no-collapse --title "***N0TICE*** [yquake2-plus.sh] NOT FOUND!" --ok-label MENU --msgbox "CHECK INTERNET CONNECTION AND RETRY INSTALL/DOWNLOAD [yquake2-plus.sh]"  25 75
 				mainMENU
+			else
+				mv /dev/shm/yquake2-plus.sh /opt/retropie/configs/ports/quake2/yquake2-plus.sh 2>/dev/null
+				sudo chmod 755 /opt/retropie/configs/ports/quake2/yquake2-plus.sh 2>/dev/null
 			fi
 			
 			# Add [yquake2+] to [emulators.cfg]
@@ -160,10 +167,10 @@ if [ "$confQ2plus" == '3' ]; then
 		rm /dev/shm/ctf/ -R -f
 		
 		LISTq2ctf150=$(
-		echo "[$(ls ~/RetroPie/roms/ports/quake2/q2ctf150/ | grep 'game.so')]"
+		echo "{$(ls ~/RetroPie/roms/ports/quake2/q2ctf150/ | grep 'game.so')}"
 		echo "$(ls ~/RetroPie/roms/ports/quake2/q2ctf150/ | grep -v 'game.so')"
 		)
-		dialog --no-collapse --title " MAKE/INSTALL [Quake II Capture the Flag] FINISHED" --ok-label Back --msgbox "$LISTq2ctf150"  25 75
+		dialog --no-collapse --title " MAKE/INSTALL [Quake II Capture the Flag] FINISHED" --ok-label Back --msgbox "     CURRENT CONTENT [~/RetroPie/roms/ports/quake2/q2ctf150/]:      $LISTq2ctf150"  25 75
 		mainMENU
 	fi
 	mainMENU
