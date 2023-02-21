@@ -3,7 +3,7 @@
 [yquake2+] Emulator Entry allows you to add Extra Parameters (+map) to [Quake2.sh] Roms.  
 Includes additional [yquake2+deathmatch] and [yquake2+dedicatedserver] Emulator Entries.  
 NOTE: You Must Specify [+map] and Setup a [server.cfg] File for Dedicated Server Mode to load properly.  
-Also Includes Utility to Assist with Make/Install Quake II Capture the Flag [game.so].  
+*Also Includes Utility to Assist with Make/Install Quake II Capture the Flag [game.so] for Linux.*  
 
 
 **HOW DOES IT WORK?**  
