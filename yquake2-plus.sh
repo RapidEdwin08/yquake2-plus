@@ -1,5 +1,6 @@
 #!/bin/bash
 # https://github.com/RapidEdwin08/yquake2-plus
+version=2023.02
 
 # "Double-Quotes" do NOT Pass the Extra Parameters (eg. +map) using Default [yquake2] String.
 # This Script will Remove "Double-Quotes" from %ROM% - To be used as an Additional Quake2 Emulator [yquake2+].
