@@ -7,10 +7,10 @@ Also Includes Utility to Assist with Make/Install Quake II Capture the Flag [gam
 
 
 **HOW DOES IT WORK?**  
-RetroPie passes the "%ROM%" String from [Quake2.sh] to [yquake2] Emulator with "Double-Quotes".  
-Using "Double-Quotes" does NOT Pass the Extra Parameters (eg. +map) when using Default [yquake2] Emulator String.  
-This Utility Regurgitates the %ROM% from [Quake2.sh] withOUT "Double-Quotes" to an Additional Quake2 Emulator [yquake2+].  
-This allows you to add Extra (+map) Parameters in the [Quake2.sh] withOUT needing to Create additional Emulators for each One.  
+RetroPie passes the "%ROM%" String from a [Quake2.sh] to [yquake2] Emulator with "Double-Quotes".  
+Using "Double-Quotes" does NOT Pass the Extra Parameters from a [Quake2.sh] (eg. +map) using Default [yquake2] Emulator.  
+This Utility Regurgitates the %ROM% from a [Quake2.sh] ***withOUT "Double-Quotes"*** to an Additional Quake2 Emulator [yquake2+].  
+This allows you to add Extra (+map) Parameters in a [Quake2.sh] withOUT needing to Create additional Emulator for each One.  
 
 ## INSTALLATION  
 
