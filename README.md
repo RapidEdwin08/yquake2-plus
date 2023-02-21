@@ -13,6 +13,8 @@ This Utility Regurgitates the %ROM% from a [Quake2.sh] ***withOUT "Double-Quotes
 This allows you to add Extra (+map) Parameters in a [Quake2.sh] withOUT needing to Create additional Emulator for each One.  
 
 ## INSTALLATION  
+***You MUST INSTALL Yamagi Quake II from RetroPie Setup 1st! [yquake2]***  
+
 
 Can be ran from retropiemenu:  
 
