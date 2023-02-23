@@ -3,45 +3,42 @@
 version=2023.02
 
 q2plusLOGO=$(
-echo "
-                            :.        .:        
+echo "                            :.        .:        
                           :.            .:      
                          =                -     
                         -:                .-    
                         =.                .=    
                         +-                --    
-                        :=-    :---=:    --.    
-                         :++-. .+-=+. .:-:.     
+                        :=-    :=  =:    --.    
+                         :++-. .+  +. .:-:.     
                            :=+=-+=+==---:       
                               .:++++:.          
-                               .+--+.           
-                                +::+            
-                                =..=            
-                                :  :            
-"
+                               .+  +.           
+                                +  +            
+                                =  =            "
 )
 
 ctfREFS=$(
 echo '
 [Quake II Capture the Flag]:
 
-1) GET [q2ctf150] FILES HERE:
+1) GET [ctf] FILES HERE:
 www.doomworld.com/idgames/idstuff/quake2/ctf/q2ctf150
 
-2) PUT Quake II Capture the Flag [q2ctf150] FILES HERE:
-~/RetroPie/roms/ports/quake2/q2ctf150/
+2) EXTRACT CONTENTS OF [q2ctf150.zip] FILES INTO:
+~/RetroPie/roms/ports/quake2/ctf/
 
-3) MAKE/INSTALL CTF [game.so] FOR LINUX:
+3) MAKE/INSTALL CTF [game.so] FOR LINUX: (Or use Utility Script)
 cd ~
 git clone --depth 1 https://github.com/yquake2/ctf.git
 cd ctf
 make
-mv ~/ctf/release/game.so ~/RetroPie/roms/ports/quake2/q2ctf150/
+mv ~/ctf/release/game.so ~/RetroPie/roms/ports/quake2/ctf/
 
 EXAMPLE [yquake2-plus.sh] ROM SCRIPTs:
 _PORT_ "quake2" "q2dme1m1 +map q2dme1m1"
 _PORT_ "quake2" "baseq2 +set deathmatch 1 +map q2dm1"
-_PORT_ "quake2" "q2ctf150 +set deathmatch 1 +map q2ctf1"
+_PORT_ "quake2" "ctf +set deathmatch 1 +map q2ctf1"
 
 # Additional Emulator Entries for RetroPie Yamagi Quake II #
 [yquake2+]: %ROM% with "Double-Quotes" Removed
@@ -113,7 +110,7 @@ if [ "$confQ2plus" == '1' ]; then
 			# Configure [yquake2] as DEFAULT in [emulators.cfg]
 			sed -i 's/default\ =.*/default\ =\ \"yquake2+\"/g' /opt/retropie/configs/ports/quake2/emulators.cfg
 		fi
-		dialog --no-collapse --title " INSTALL [yquake2+] Emulator for Yamagi Quake II FINISHED" --ok-label Back --msgbox "$(cat /opt/retropie/configs/ports/quake2/emulators.cfg)"  25 75
+		dialog --no-collapse --title " INSTALL [yquake2+] Emulator for Yamagi Quake II FINISHED" --ok-label Back --msgbox "  CURRENT CONTENT [opt/retropie/configs/ports/quake2/emulators.cfg]:  $(cat /opt/retropie/configs/ports/quake2/emulators.cfg)"  25 75
 		mainMENU
 	fi
 	mainMENU
@@ -141,7 +138,7 @@ if [ "$confQ2plus" == '2' ]; then
 			# Replace yquake2 [emulators.cfg]
 			mv /dev/shm/emulators.cfg /opt/retropie/configs/ports/quake2/emulators.cfg 2>/dev/null
 		fi
-		dialog --no-collapse --title " REMOVE [yquake2+] for RetroPie Yamagi Quake II FINISHED" --ok-label Back --msgbox "$(cat /opt/retropie/configs/ports/quake2/emulators.cfg)"  25 75
+		dialog --no-collapse --title " REMOVE [yquake2+] for RetroPie Yamagi Quake II FINISHED" --ok-label Back --msgbox "  CURRENT CONTENT [opt/retropie/configs/ports/quake2/emulators.cfg]:  $(cat /opt/retropie/configs/ports/quake2/emulators.cfg)"  25 75
 		mainMENU
 	fi
 	mainMENU
@@ -157,20 +154,20 @@ if [ "$confQ2plus" == '3' ]; then
 	# Install Confirmed - Otherwise Back to Main Menu
 	if [ "$confINSTALLq2ctf" == '1' ]; then
 		tput reset
-		if [ ! -d ~/RetroPie/roms/ports/quake2/q2ctf150/ ]; then mkdir ~/RetroPie/roms/ports/quake2/q2ctf150; fi
+		if [ ! -d ~/RetroPie/roms/ports/quake2/ctf/ ]; then mkdir ~/RetroPie/roms/ports/quake2/ctf; fi
 		cd /dev/shm/
 		git clone --depth 1 https://github.com/yquake2/ctf.git
 		cd ctf
 		make
-		mv /dev/shm/ctf/release/game.so ~/RetroPie/roms/ports/quake2/q2ctf150/game.so
+		mv /dev/shm/ctf/release/game.so ~/RetroPie/roms/ports/quake2/ctf/game.so
 		cd ~
 		rm /dev/shm/ctf/ -R -f
 		
 		LISTq2ctf150=$(
-		echo "{$(ls ~/RetroPie/roms/ports/quake2/q2ctf150/ | grep 'game.so')}"
-		echo "$(ls ~/RetroPie/roms/ports/quake2/q2ctf150/ | grep -v 'game.so')"
+		echo "{$(ls ~/RetroPie/roms/ports/quake2/ctf/ | grep 'game.so')}"
+		echo "$(ls ~/RetroPie/roms/ports/quake2/ctf/ | grep -v 'game.so')"
 		)
-		dialog --no-collapse --title " MAKE/INSTALL [Quake II Capture the Flag] FINISHED" --ok-label Back --msgbox "     CURRENT CONTENT [~/RetroPie/roms/ports/quake2/q2ctf150/]:      $LISTq2ctf150"  25 75
+		dialog --no-collapse --title " MAKE/INSTALL [Quake II Capture the Flag] FINISHED" --ok-label Back --msgbox "         CURRENT CONTENT [~/RetroPie/roms/ports/quake2/ctf/]:      $LISTq2ctf150"  25 75
 		mainMENU
 	fi
 	mainMENU
