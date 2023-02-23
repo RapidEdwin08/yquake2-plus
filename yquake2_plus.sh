@@ -37,8 +37,8 @@ mv ~/ctf/release/game.so ~/RetroPie/roms/ports/quake2/ctf/
 
 EXAMPLE [yquake2-plus.sh] ROM SCRIPTs:
 _PORT_ "quake2" "q2dme1m1 +map q2dme1m1"
-_PORT_ "quake2" "baseq2 +set deathmatch 1 +map q2dm1"
-_PORT_ "quake2" "ctf +set deathmatch 1 +map q2ctf1"
+_PORT_ "quake2" "baseq2 +map q2dm1"
+_PORT_ "quake2" "ctf +map q2ctf1"
 
 # Additional Emulator Entries for RetroPie Yamagi Quake II #
 [yquake2+]: %ROM% with "Double-Quotes" Removed
