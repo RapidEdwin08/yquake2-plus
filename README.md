@@ -6,8 +6,8 @@ Includes additional [yquake2+deathmatch] and [yquake2+dedicatedserver] Emulator 
 
 *Also Includes:*  
 - Utility to Assist with Make/Install Quake II Capture the Flag [game.so] for Linux.  
-- A Mechanism that will Copy/Paste [config.cfg] from Main Quake2 [baseq2] to Current %ROM% if not found.  
-*NOTE: Set your Preferred Control Mappings in Quake2 [baseq2] 1st to be Replicated to 0ther Quake2 %ROM%s.*  
+- A Mechanism that will Copy/Paste [config.cfg] from Main Quake2 [baseq2] to Current %ROM% [config.cfg] if not found.  
+*NOTE: Set your Preferred Control Mappings in Quake2 [baseq2] 1st to be Replicated to 0ther Quake2 %ROM% [config.cfg].*  
 
 
 **HOW DOES IT WORK?**  
