@@ -29,7 +29,7 @@ if [ "$currentGAME" == "rogue" ]; then defaultMAP=rdm14; fi
 if [ "$currentGAME" == "zaero" ]; then defaultMAP=zbase1; fi
 if [ "$currentGAME" == "xatrix" ]; then defaultMAP=xdm7; fi
 if [ "$currentGAME" == "jugfull" ]; then defaultMAP=jdm1; fi
-if [ "$currentGAME" == "wanted" ]; then defaultMAP=mineyard; fi
+if [ "$currentGAME" == "wanted" ]; then defaultMAP=wanted; fi
 if [ "$currentGAME" == "oblivion" ]; then defaultMAP=space; fi
 
 displayCURRENT="$(head -3 /dev/shm/runcommand.info | tail -1)"
@@ -122,15 +122,22 @@ if [ "$1" == "" ] && [ "$0" == "/opt/retropie/configs/ports/quake2/yquake2-plus.
 fi
 
 #=======================================
-# Mechanism will Copy/Paste the [config.cfg] from [baseq2] config file to Current [%ROM%/config.cfg] if NOT found
-# ***SETUP YOUR PREFERRED CONTROLS IN QUAKE II [baseq2] BEFOREHAND***
-currentGAMEcfg=/opt/retropie/configs/ports/quake2/yquake2/$currentGAME/config.cfg
+# Mechanism will Copy [bind JOY#] + [bind TRIG#] Bindings from [baseq2] [config.cfg] to Current [%ROM%/config.cfg] if NOT found
+# ***SETUP YOUR PREFERRED JOYPAD CONTROLS IN QUAKE II [baseq2] BEFOREHAND***
+currentGAMEcfg=/home/$USER/RetroPie/roms/ports/quake2/$currentGAME/config.cfg
+yq2GAMEcfg=/opt/retropie/configs/ports/quake2/yquake2/$currentGAME/config.cfg
 qiiBASEcfg=/opt/retropie/configs/ports/quake2/yquake2/baseq2/config.cfg
 
-if [ ! -f $currentGAMEcfg ]; then
+if [ ! -f $yq2GAMEcfg ]; then
 	mkdir /opt/retropie/configs/ports/quake2/yquake2 > /dev/null 2>&1
 	mkdir /opt/retropie/configs/ports/quake2/yquake2/$currentGAME > /dev/null 2>&1
-	cp $qiiBASEcfg $currentGAMEcfg > /dev/null 2>&1
+	
+	# M0D may already have a custom [config.cfg] - Use that as a base before Copy JOY/TRIG Bindings
+	if [ -f $currentGAMEcfg ]; then cp $currentGAMEcfg $yq2GAMEcfg > /dev/null 2>&1; fi
+	
+	# Output [bind JOY#] + [bind TRIG#] to the new [config.cfg] from [baseq2] config
+	cat $qiiBASEcfg | grep "^bind JOY" > $yq2GAMEcfg
+	cat $qiiBASEcfg | grep "^bind TRIG" >> $yq2GAMEcfg
 fi
 
 #=======================================
@@ -141,7 +148,7 @@ if [ "$2" == "deathmatch" ] || [ "$4" == "deathmatch" ]; then # Deathmatch
 	echo $yquake2STRING +set deathmatch 1 >> /dev/shm/runcommand.log
 	$yquake2STRING +set deathmatch 1
 elif [ "$2" == "server" ] || [ "$4" == "server" ]; then # Dedicated Server - Uses [server.cfg]
-	sudo /home/pi/RetroPie-Setup/retropie_packages.sh retropiemenu launch "/opt/retropie/configs/ports/quake2/yquake2-plus.sh" </dev/tty > /dev/tty &
+	sudo /home/$USER/RetroPie-Setup/retropie_packages.sh retropiemenu launch "/opt/retropie/configs/ports/quake2/yquake2-plus.sh" </dev/tty > /dev/tty &
 	# Create [server.cfg] if NOT found in Specified Q2-Game Folder
 	if [ ! -f ~/RetroPie/roms/ports/quake2/$currentGAME/server.cfg ]; then echo "$serverCFGq2" > ~/RetroPie/roms/ports/quake2/$currentGAME/server.cfg; fi
 	# Add [+map $defaultMAP] if NOT SPECIFIED for dedicatedserver
