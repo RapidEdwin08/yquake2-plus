@@ -5,19 +5,18 @@ Includes additional [yquake2+deathmatch] and [yquake2+dedicatedserver] Emulator 
 *NOTE: [+map] and [server.cfg] Required for Dedicated Server Mode to load properly.*  
 *When Installed this Utility will Auto-Create [server.cfg] when Not found and specify [+map]*  
 
-*Also Includes:*  
-- Utility to Assist with Make/Install Quake II Capture the Flag [game.so] for Linux.  
-- A Mechanism to Mirror Control Bindings from [baseq2/config.cfg] to Current [%ROM%/config.cfg] when NOT found.  
-*NOTE: Set your Preferred Control Mappings in Quake2 [baseq2] 1st to be Replicated to 0ther Quake2 %ROM% [config.cfg].*  
-*eg. "+moveup" "centerview" "+movedown" "+speed" "weapprev" "weapnext" "cmd help" "inven" "invprev" "invnext" "invdrop" "invuse" "+attack"*  
-
-
 **HOW DOES IT WORK?**  
 By Default RetroPie passes the "%ROM%" String from a [Quake2.sh] to [yquake2] Emulator with "Double-Quotes".  
 Using "Double-Quotes" does NOT Pass the Extra Parameters from a [Quake2.sh] (eg. +map) using Default [yquake2] Emulator.  
 
 This Utility Regurgitates the %ROM% from a [Quake2.sh] ***withOUT "Double-Quotes"*** to an Additional Quake2 Emulator [yquake2+].  
 This allows you to add Extra (+map) Parameters in a [Quake2.sh] withOUT needing to Create additional Emulator for each One.  
+
+*Also Includes:*  
+- Utility to Assist with Make/Install Quake II Capture the Flag [game.so] for Linux.  
+- A Mechanism to Mirror Control Bindings from [baseq2/config.cfg] to Current [%ROM%/config.cfg] when NOT found.  
+*NOTE: Set your Preferred Control Mappings in Quake2 [baseq2] 1st to have it Auto-Replicated to 0ther Quake2 [%ROM%/config.cfg].*  
+*eg. "+moveup" "centerview" "+movedown" "+speed" "weapprev" "weapnext" "cmd help" "inven" "invprev" "invnext" "invdrop" "invuse" "+attack"*  
 
 ## INSTALLATION  
 ***You MUST INSTALL Yamagi Quake II from RetroPie Setup 1st! [yquake2]***  
