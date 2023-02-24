@@ -22,15 +22,19 @@
 #=======================================
 version=2023.02
 
+# Add defaultMAP for [dedicatedserver] if NOT Specified
 defaultMAP=q2dm1
 currentGAME=$(head -3 /dev/shm/runcommand.info | tail -1 | awk '{print $1}')
+# DM Maps
 if [ "$currentGAME" == "baseq2" ]; then defaultMAP=q2dm1; fi
 if [ "$currentGAME" == "rogue" ]; then defaultMAP=rdm14; fi
 if [ "$currentGAME" == "zaero" ]; then defaultMAP=zbase1; fi
 if [ "$currentGAME" == "xatrix" ]; then defaultMAP=xdm7; fi
 if [ "$currentGAME" == "jugfull" ]; then defaultMAP=jdm1; fi
+# Non-DM Maps
 if [ "$currentGAME" == "wanted" ]; then defaultMAP=wanted; fi
-if [ "$currentGAME" == "oblivion" ]; then defaultMAP=space; fi
+if [ "$currentGAME" == "oblivion" ]; then defaultMAP=w1; fi
+if [ "$currentGAME" == "smd" ]; then defaultMAP=smd4; fi
 
 displayCURRENT="$(head -3 /dev/shm/runcommand.info | tail -1)"
 if [ "$(head -3 /dev/shm/runcommand.info | tail -1 | grep '+map')" == '' ]; then
@@ -64,7 +68,7 @@ echo "
 serverCFGq2=$(
 echo '// Sample server config
 //
-// dmflags settings:
+// dmflags settings: https://github.com/RapidEdwin08/yquake2-plus
 //
 //        DF_NO_HEALTH            1
 //        DF_NO_ITEMS             2
