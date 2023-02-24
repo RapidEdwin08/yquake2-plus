@@ -1,9 +1,6 @@
 #!/bin/bash
 # https://github.com/RapidEdwin08/yquake2-plus
 
-# INPUT DEFAULT MAP for [dedicatedserver] Mode when/if NOT SPECIFIED in [Quake2.sh]
-defaultMAP=q2dm1
-
 # "Double-Quotes" do NOT Pass the Extra Parameters (eg. +map) using Default [yquake2] String.
 # This Script will Remove "Double-Quotes" from %ROM% - To be used as an Additional Quake2 Emulator [yquake2+].
 
@@ -24,6 +21,16 @@ defaultMAP=q2dm1
 #		"/opt/retropie/supplementary/runcommand/runcommand.sh" 0 _PORT_ "quake2" "ctf +set deathmatch 1 +map q2ctf1"
 #=======================================
 version=2023.02
+
+defaultMAP=q2dm1
+currentGAME=$(head -3 /dev/shm/runcommand.info | tail -1 | awk '{print $1}')
+if [ "$currentGAME" == "baseq2" ]; then defaultMAP=q2dm1; fi
+if [ "$currentGAME" == "rogue" ]; then defaultMAP=rdm14; fi
+if [ "$currentGAME" == "zaero" ]; then defaultMAP=zbase1; fi
+if [ "$currentGAME" == "xatrix" ]; then defaultMAP=xdm7; fi
+if [ "$currentGAME" == "jugfull" ]; then defaultMAP=jdm1; fi
+if [ "$currentGAME" == "wanted" ]; then defaultMAP=mineyard; fi
+if [ "$currentGAME" == "oblivion" ]; then defaultMAP=space; fi
 
 displayCURRENT="$(head -3 /dev/shm/runcommand.info | tail -1)"
 if [ "$(head -3 /dev/shm/runcommand.info | tail -1 | grep '+map')" == '' ]; then
@@ -54,9 +61,57 @@ echo "
                   !   !   
 ")
 
+serverCFGq2=$(
+echo '// Sample server config
+//
+// dmflags settings:
+//
+//        DF_NO_HEALTH            1
+//        DF_NO_ITEMS             2
+//        DF_WEAPONS_STAY         4
+//        DF_NO_FALLING           8
+//        DF_INSTANT_ITEMS        16
+//        DF_SAME_LEVEL           32
+//        DF_SKINTEAMS            64
+//        DF_MODELTEAMS           128
+//        DF_NO_FRIENDLY_FIRE     256
+//        DF_SPAWN_FARTHEST       512
+//        DF_FORCE_RESPAWN        1024
+//        DF_NO_ARMOR             2048
+//        DF_ALLOW_EXIT           4096
+//        DF_INFINITE_AMMO        8192
+//        DF_QUAD_DROP            16384
+//        DF_FIXED_FOV            32768
+//
+//	Heres how it works:	
+//
+//   DF_WEAPONS_STAY + DF_INSTANT_ITEMS + DF_SPAWN_FARTHEST + 
+//       DF_FORCE_RESPAWN + DF_QUAD_DROP
+//
+// which works out to:
+//
+//   4 + 16 + 512 + 1024 + 16384 = 17940
+//
+// ADD DF_NO_FALLING +8 = 17948
+//
+// ADD DF_ALLOW_EXIT +4096 = 22044
+
+//set dmflags 17948
+set dmflags 22044
+set hostname "q2srvdm" //config.cfg may 0verride hostname here
+set public 1
+set deathmatch 1
+set maxclients 16
+set fraglimit 100
+set timelimit 10
+//set sv_maplist "q2dm1 q2dm2 q2dm3 q2dm4 q2dm5 q2dm6 q2dm7 q2dm8"
+//map q2dm1
+'
+)
+
 #=======================================
 # For Dedicated Server this script calls itself with no parameters - Displays Dedicated Server Dialog - Kills yquake2 when [QUIT] is pressed
-if [ "$1" == "" ]; then
+if [ "$1" == "" ] && [ "$0" == "/opt/retropie/configs/ports/quake2/yquake2-plus.sh" ]; then
 	dialog --no-collapse --ok-label QUIT --title "Quake2 is Running as a Dedicated Server:" --msgbox "$qiiLOGO Press [QUIT] to KILL SERVER and EXIT... "  25 75 </dev/tty > /dev/tty
 	# Run RetroPie [runcommand-onend.sh] after Quit
 	bash /opt/retropie/configs/all/runcommand-onend.sh > /dev/null 2>&1
@@ -69,7 +124,6 @@ fi
 #=======================================
 # Mechanism will Copy/Paste the [config.cfg] from [baseq2] config file to Current [%ROM%/config.cfg] if NOT found
 # ***SETUP YOUR PREFERRED CONTROLS IN QUAKE II [baseq2] BEFOREHAND***
-currentGAME=$(head -3 /dev/shm/runcommand.info | tail -1 | awk '{print $1}')
 currentGAMEcfg=/opt/retropie/configs/ports/quake2/yquake2/$currentGAME/config.cfg
 qiiBASEcfg=/opt/retropie/configs/ports/quake2/yquake2/baseq2/config.cfg
 
@@ -88,6 +142,8 @@ if [ "$2" == "deathmatch" ] || [ "$4" == "deathmatch" ]; then # Deathmatch
 	$yquake2STRING +set deathmatch 1
 elif [ "$2" == "server" ] || [ "$4" == "server" ]; then # Dedicated Server - Uses [server.cfg]
 	sudo /home/pi/RetroPie-Setup/retropie_packages.sh retropiemenu launch "/opt/retropie/configs/ports/quake2/yquake2-plus.sh" </dev/tty > /dev/tty &
+	# Create [server.cfg] if NOT found in Specified Q2-Game Folder
+	if [ ! -f ~/RetroPie/roms/ports/quake2/$currentGAME/server.cfg ]; then echo "$serverCFGq2" > ~/RetroPie/roms/ports/quake2/$currentGAME/server.cfg; fi
 	# Add [+map $defaultMAP] if NOT SPECIFIED for dedicatedserver
 	if [ "$(head -3 /dev/shm/runcommand.info | tail -1 | grep '+map')" == '' ]; then
 		echo $yquake2STRING +map $defaultMAP +set dedicated 1 +exec server.cfg >> /dev/shm/runcommand.log
