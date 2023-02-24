@@ -126,22 +126,40 @@ if [ "$1" == "" ] && [ "$0" == "/opt/retropie/configs/ports/quake2/yquake2-plus.
 fi
 
 #=======================================
-# Mechanism will Copy [bind JOY#] + [bind TRIG#] Bindings from [baseq2] [config.cfg] to Current [%ROM%/config.cfg] if NOT found
+# Mechanism will Copy Bindings for Most Common Actions from [baseq2] [config.cfg] to Current [%ROM%/config.cfg] if NOT found
 # ***SETUP YOUR PREFERRED JOYPAD CONTROLS IN QUAKE II [baseq2] BEFOREHAND***
 currentGAMEcfg=/home/$USER/RetroPie/roms/ports/quake2/$currentGAME/config.cfg
 yq2GAMEcfg=/opt/retropie/configs/ports/quake2/yquake2/$currentGAME/config.cfg
-qiiBASEcfg=/opt/retropie/configs/ports/quake2/yquake2/baseq2/config.cfg
+qiiBASEcfg=$(cat /opt/retropie/configs/ports/quake2/yquake2/baseq2/config.cfg)
 
 if [ ! -f $yq2GAMEcfg ]; then
 	mkdir /opt/retropie/configs/ports/quake2/yquake2 > /dev/null 2>&1
 	mkdir /opt/retropie/configs/ports/quake2/yquake2/$currentGAME > /dev/null 2>&1
 	
-	# M0D may already have a custom [config.cfg] - Use that as a base before Copy JOY/TRIG Bindings
-	if [ -f $currentGAMEcfg ]; then cp $currentGAMEcfg $yq2GAMEcfg > /dev/null 2>&1; fi
-	
-	# Output [bind JOY#] + [bind TRIG#] to the new [config.cfg] from [baseq2] config
-	cat $qiiBASEcfg | grep "^bind JOY" > $yq2GAMEcfg
-	cat $qiiBASEcfg | grep "^bind TRIG" >> $yq2GAMEcfg
+	# M0D may already have a custom [config.cfg] - Use that as a base and Filter Out Common Action Bindings if [baseq2/config.cfg] exists
+	if [ -f $currentGAMEcfg ] && [ -f /opt/retropie/configs/ports/quake2/yquake2/baseq2/config.cfg ]; then
+		cat $currentGAMEcfg | grep -v "+moveup" | grep -v "centerview" | grep -v "+movedown" | grep -v "+speed" | grep -v "weapprev" | grep -v "weapnext" | grep -v "cmd help" | grep -v "inven" | grep -v "invprev" | grep -v "invnext" | grep -v "invdrop" | grep -v "invuse" | grep -v "+attack" > $yq2GAMEcfg
+	fi
+	if [ -f /opt/retropie/configs/ports/quake2/yquake2/baseq2/config.cfg ]; then
+		# Pull Bindings for Most Common Actions from [baseq2] [config.cfg]
+		# "+moveup" "centerview" "+movedown" "+speed" "weapprev" "weapnext" "cmd help" "inven" "invprev" "invnext" "invdrop" "invuse" "+attack"
+		echo "// Bindings pulled from [baseq2/config.cfg]" >> $yq2GAMEcfg
+		echo "$qiiBASEcfg" | grep "+moveup" >> $yq2GAMEcfg
+		echo "$qiiBASEcfg" | grep "centerview" >> $yq2GAMEcfg
+		echo "$qiiBASEcfg" | grep "+movedown" >> $yq2GAMEcfg
+		echo "$qiiBASEcfg" | grep "+speed" >> $yq2GAMEcfg
+		echo "$qiiBASEcfg" | grep "weapprev" >> $yq2GAMEcfg
+		echo "$qiiBASEcfg" | grep "weapnext" >> $yq2GAMEcfg
+		echo "$qiiBASEcfg" | grep "cmd help" >> $yq2GAMEcfg
+		echo "$qiiBASEcfg" | grep "inven" >> $yq2GAMEcfg
+		echo "$qiiBASEcfg" | grep "invprev" >> $yq2GAMEcfg
+		echo "$qiiBASEcfg" | grep "invnext" >> $yq2GAMEcfg
+		echo "$qiiBASEcfg" | grep "invdrop" >> $yq2GAMEcfg
+		echo "$qiiBASEcfg" | grep "invuse" >> $yq2GAMEcfg
+		echo "$qiiBASEcfg" | grep "+attack" >> $yq2GAMEcfg
+		#echo "// Slight Mechanical Destruction Custom Binding [+use]" >> $yq2GAMEcfg
+		#echo "$qiiBASEcfg" | grep "+use" >> $yq2GAMEcfg
+	fi
 fi
 
 #=======================================
