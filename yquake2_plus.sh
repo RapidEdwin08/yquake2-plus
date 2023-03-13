@@ -59,21 +59,21 @@ if [ ! -f /opt/retropie/configs/ports/quake2/emulators.cfg ]; then
 	dialog --no-collapse --title "***N0TICE*** [..ports/quake2/emlators.cfg] NOT FOUND!" --ok-label MENU --msgbox "You MUST INSTALL Yamagi Quake II from RetroPie Setup 1st! [yquake2]"  25 75
 fi
 # Confirm Configurations
-confQ2plus=$(dialog --stdout --no-collapse --title " [yquake2-plus] + [Quake II Capture the Flag] by: RapidEdwin08 [v$version]" \
+confQ2plus=$(dialog --no-collapse --title " [yquake2-plus] + [Quake II Capture the Flag] by: RapidEdwin08 [v$version]" \
 	--ok-label OK --cancel-label EXIT \
 	--menu "$q2plusLOGO" 25 75 20 \
 	1 "><  INSTALL [yquake2+] for RetroPie Yamagi Quake II  ><" \
 	2 "><  REMOVE  [yquake2+] for RetroPie Yamagi Quake II  ><" \
 	3 "><  MAKE/INSTALL [Quake II Capture the Flag]  ><" \
-	R "><  REFERENCES  ><")
+	R "><  REFERENCES  ><" 2>&1>/dev/tty)
 
 # INSTALL [yquake2+]
 if [ "$confQ2plus" == '1' ]; then
-	confINSTALLq2plus=$(dialog --stdout --no-collapse --title "               INSTALL [yquake2+] for RetroPie Yamagi Quake II              " \
+	confINSTALLq2plus=$(dialog --no-collapse --title "               INSTALL [yquake2+] for RetroPie Yamagi Quake II              " \
 		--ok-label OK --cancel-label BACK \
 		--menu "                          ? ARE YOU SURE ?             \n   [yquake2+]  [yquake2+deathmatch]  [yquake2+dedicatedserver]" 25 75 20 \
 		1 "><  YES INSTALL [yquake2+] for RetroPie Yamagi Quake II  ><" \
-		2 "><  BACK  ><")
+		2 "><  BACK  ><" 2>&1>/dev/tty)
 	# Install Confirmed - Otherwise Back to Main Menu
 	if [ "$confINSTALLq2plus" == '1' ]; then
 		tput reset
@@ -118,11 +118,11 @@ fi
 
 # REMOVE [yquake2+]
 if [ "$confQ2plus" == '2' ]; then
-	confREMOVEq2plus=$(dialog --stdout --no-collapse --title "               REMOVE [yquake2+] for RetroPie Yamagi Quake II              " \
+	confREMOVEq2plus=$(dialog --no-collapse --title "               REMOVE [yquake2+] for RetroPie Yamagi Quake II              " \
 		--ok-label OK --cancel-label BACK \
 		--menu "                          ? ARE YOU SURE ?             " 25 75 20 \
 		1 "><  YES REMOVE [yquake2+] for RetroPie Yamagi Quake II  ><" \
-		2 "><  BACK  ><")
+		2 "><  BACK  ><" 2>&1>/dev/tty)
 	# Install Confirmed - Otherwise Back to Main Menu
 	if [ "$confREMOVEq2plus" == '1' ]; then
 		tput reset
@@ -146,11 +146,11 @@ fi
 
 # INSTALL [q2ctf]
 if [ "$confQ2plus" == '3' ]; then
-	confINSTALLq2ctf=$(dialog --stdout --no-collapse --title "     MAKE/INSTALL [Quake II Capture the Flag]        " \
+	confINSTALLq2ctf=$(dialog --no-collapse --title "     MAKE/INSTALL [Quake II Capture the Flag]        " \
 		--ok-label OK --cancel-label BACK \
 		--menu "                          ? ARE YOU SURE ?             \n                   https://github.com/yquake2/ctf          " 25 75 20 \
 		1 "><  YES MAKE/INSTALL  [Quake II Capture the Flag]  ><" \
-		2 "><  BACK  ><")
+		2 "><  BACK  ><" 2>&1>/dev/tty)
 	# Install Confirmed - Otherwise Back to Main Menu
 	if [ "$confINSTALLq2ctf" == '1' ]; then
 		tput reset
