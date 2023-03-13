@@ -43,7 +43,7 @@ cd ~/yquake2-plus && ./yquake2_plus.sh
 	<game>
 		<path>./yquake2_plus.sh</path>
 		<name>[yquake2+] Yamagi Quake II Plus</name>
-		<desc>INSTALL/REMOVE [yquake2+] for [RetroPie].</desc>
+		<desc>Configure [yquake2+] for [RetroPie].</desc>
 		<image>./icons/yquake2-plus.png</image>
 	</game>
 ```
