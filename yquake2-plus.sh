@@ -42,8 +42,7 @@ if [ "$(head -3 /dev/shm/runcommand.info | tail -1 | grep '+map')" == '' ]; then
 fi
 
 qiiLOGO=$(
-echo "
-            .               .              $(hostname -I | tr -d ' '):27910
+            .               .   $(hostname -I | tr -d ' ') / `curl -4 icanhazip.com 2>/dev/null | awk '{print $NF; exit}'` :27910
          ..                  .:.           
        .^                      .^.              
       ~~                         ~^        
