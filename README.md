@@ -21,23 +21,18 @@ This allows you to add Extra (+map) Parameters in a [Quake2.sh] withOUT needing 
 ## INSTALLATION  
 ***You MUST INSTALL Yamagi Quake II from RetroPie Setup 1st! [yquake2]***  
 
+If you want 1-Run-N-Done:
+```bash
+curl -sSL https://raw.githubusercontent.com/RapidEdwin08/yquake2-plus/main/yquake2_plus.sh  | bash
+```
 
-Can be ran from retropiemenu:  
-
+If you want to Put the Install Script in the retropiemenu [+Icon]:  
 ```bash
 wget https://raw.githubusercontent.com/RapidEdwin08/yquake2-plus/main/yquake2_plus.sh -P ~/RetroPie/retropiemenu
 wget https://raw.githubusercontent.com/RapidEdwin08/yquake2-plus/main/yquake2-plus.png -P ~/RetroPie/retropiemenu/icons
 ```
 
-0R Run Manually from any directory:  
-```bash
-cd ~
-git clone --depth 1 https://github.com/RapidEdwin08/yquake2-plus.git
-sudo chmod 755 ~/yquake2-plus/yquake2_plus.sh
-cd ~/yquake2-plus && ./yquake2_plus.sh
-```
-
-0ptionally you can Add an Entry and Icon to your retropiemenu [gamelist.xml]:  
+0ptionally you can Add an Entry [+Icon] to your retropiemenu [gamelist.xml]:  
 *Example Entry:*  
 ```
 	<game>
@@ -46,6 +41,14 @@ cd ~/yquake2-plus && ./yquake2_plus.sh
 		<desc>Configure [yquake2+] for [RetroPie].</desc>
 		<image>./icons/yquake2-plus.png</image>
 	</game>
+```
+
+If you want to GIT it All:  
+```bash
+cd ~
+git clone --depth 1 https://github.com/RapidEdwin08/yquake2-plus.git
+sudo chmod 755 ~/yquake2-plus/yquake2_plus.sh
+cd ~/yquake2-plus && ./yquake2_plus.sh
 ```
 
 ## REFERENCES   
