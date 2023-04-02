@@ -41,7 +41,7 @@ if [ "$(head -3 /dev/shm/runcommand.info | tail -1 | grep '+map')" == '' ]; then
 	displayCURRENT="$(head -3 /dev/shm/runcommand.info | tail -1) +map $defaultMAP"
 fi
 
-qiiLOGO=$(
+qiiLOGO=$("
             .               .   $(hostname -I | tr -d ' ') / `curl -4 icanhazip.com 2>/dev/null | awk '{print $NF; exit}'` :27910
          ..                  .:.           
        .^                      .^.              
