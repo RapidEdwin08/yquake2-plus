@@ -47,7 +47,7 @@ If you want to GIT it All:
 ```bash
 cd ~
 git clone --depth 1 https://github.com/RapidEdwin08/yquake2-plus.git
-sudo chmod 755 ~/yquake2-plus/yquake2_plus.sh
+chmod 755 ~/yquake2-plus/yquake2_plus.sh
 cd ~/yquake2-plus && ./yquake2_plus.sh
 
 ```
